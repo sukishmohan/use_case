@@ -16,8 +16,8 @@ mvn spring-boot:run       # start on http://localhost:8080
 - [x] Step 2: DTOs, validation, token check, error handler
 - [x] Step 3: pure Java rules C2-C11 with unit tests
 - [x] Step 4: transactional feed service (C1, C12, C13), feed log and as-of price endpoints
-- [ ] Step 5: remaining tests and end-to-end test
-- [ ] Step 6: refactor, curl samples, coverage thresholds
+- [x] Step 5: transaction, JPA, MVC, reference-scenario, and worked-example end-to-end tests; JaCoCo thresholds
+- [ ] Step 6: final refactor and curl samples
 
 ## Layout
 
