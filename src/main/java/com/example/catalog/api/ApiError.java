@@ -1,0 +1,5 @@
+package com.example.catalog.api;
+
+import java.util.List;
+
+public record ApiError(String code, String message, List<String> details) { }
