@@ -1,0 +1,29 @@
+{
+  "feedId": "FD-ACMEFOODS-000047",
+  "sequenceNo": 47,
+  "mode": "DELTA",
+  "generatedAt": "2026-11-07T00:00:00Z",
+  "products": [
+    {
+      "supplierProductId": "AF-RICE-01",
+      "action": "UPSERT",
+      "brand": "Golden Harvest",
+      "category": { "name": "Basmati", "parent": { "name": "Rice", "parent": { "name": "Staples" } } },
+      "names": { "en": "Premium Basmati Rice" },
+      "descriptions": {},
+      "attributes": [],
+      "variants": [
+        {
+          "supplierVariantId": "AF-RICE-01-1KG",
+          "packSize": { "value": 1, "unit": "KG" },
+          "mrp": 180.00,
+          "sellingPrice": 165.00,
+          "priceIncludesTax": true,
+          "gstPercent": 5,
+          "barcode": "8901234567890",
+          "stock": 120
+        }
+      ]
+    }
+  ]
+}

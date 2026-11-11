@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import com.example.catalog.api.FeedRequestValidator;
 import com.example.catalog.api.StructuralValidationException;
+import com.example.catalog.api.ApiException;
 import com.example.catalog.api.dto.FeedResult;
 import com.example.catalog.domain.Supplier;
 import com.example.catalog.repository.SupplierRepository;
@@ -15,11 +16,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.example.catalog.api.ApiException;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.Optional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -41,9 +41,9 @@ class FeedControllerWebMvcTest {
             """;
 
     @Autowired MockMvc mvc;
-    @MockBean SupplierRepository suppliers;
-    @MockBean FeedService feedService;
-    @MockBean FeedRequestValidator validator;
+    @MockitoBean SupplierRepository suppliers;
+    @MockitoBean FeedService feedService;
+    @MockitoBean FeedRequestValidator validator;
 
     @BeforeEach void supplierExistsByDefault() {
         Supplier supplier = new Supplier(); supplier.setSupplierCode("ACMEFOODS");

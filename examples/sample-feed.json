@@ -1,0 +1,84 @@
+{
+  "feedId": "FD-ACMEFOODS-000045",
+  "sequenceNo": 45,
+  "mode": "DELTA",
+  "generatedAt": "2026-11-06T11:30:00+05:30",
+  "products": [
+    {
+      "supplierProductId": "AF-RICE-01",
+      "action": "UPSERT",
+      "brand": " golden  harvest ",
+      "category": {
+        "name": " Basmati ",
+        "parent": { "name": "Rice", "parent": { "name": " staples " } }
+      },
+      "names": { "en": "Premium Basmati Rice", "hi": "Premium Basmati Chawal", "ta": null },
+      "descriptions": { "en": "Aged long-grain basmati" },
+      "attributes": [
+        { "key": "Origin", "value": "India" },
+        { "key": "Is Organic", "value": "yes" },
+        { "key": "origin", "value": "Punjab, India" }
+      ],
+      "variants": [
+        {
+          "supplierVariantId": "AF-RICE-01-1KG",
+          "packSize": { "value": 1, "unit": "KG" },
+          "mrp": 180.00,
+          "sellingPrice": 165.00,
+          "priceIncludesTax": true,
+          "gstPercent": 5,
+          "barcode": "8901234567890",
+          "stock": 120
+        },
+        {
+          "supplierVariantId": "AF-RICE-01-5KG",
+          "packSize": { "value": 5, "unit": "KG" },
+          "mrp": 850.00,
+          "sellingPrice": 799.00,
+          "priceIncludesTax": true,
+          "gstPercent": 5,
+          "barcode": "8901234567807",
+          "stock": 8
+        }
+      ]
+    },
+    {
+      "supplierProductId": "AF-OIL-07",
+      "action": "DELETE"
+    },
+    {
+      "supplierProductId": "AF-DAL-03",
+      "action": "UPSERT",
+      "brand": "Acme Foods",
+      "category": {
+        "name": "Toor Dal",
+        "parent": { "name": "Pulses", "parent": { "name": "staples" } }
+      },
+      "names": { "en": "Unpolished Toor Dal" },
+      "descriptions": {},
+      "attributes": [],
+      "variants": [
+        {
+          "supplierVariantId": "AF-DAL-03-500G",
+          "packSize": { "value": 500, "unit": "G" },
+          "mrp": 110.00,
+          "sellingPrice": 120.00,
+          "priceIncludesTax": true,
+          "gstPercent": 5,
+          "barcode": "8901234567821",
+          "stock": 15
+        },
+        {
+          "supplierVariantId": "AF-DAL-03-1KG",
+          "packSize": { "value": 1, "unit": "KG" },
+          "mrp": 210.00,
+          "sellingPrice": 189.00,
+          "priceIncludesTax": false,
+          "gstPercent": 5,
+          "barcode": "8901234567814",
+          "stock": 40
+        }
+      ]
+    }
+  ]
+}

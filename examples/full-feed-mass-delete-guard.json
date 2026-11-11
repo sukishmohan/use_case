@@ -1,0 +1,29 @@
+{
+  "feedId": "FD-ACMEFOODS-000045",
+  "sequenceNo": 45,
+  "mode": "FULL",
+  "generatedAt": "2026-11-06T11:30:00+05:30",
+  "products": [
+    {
+      "supplierProductId": "AF-DAL-03",
+      "action": "UPSERT",
+      "brand": "Acme Foods",
+      "category": { "name": "Toor Dal", "parent": { "name": "Pulses", "parent": { "name": "Staples" } } },
+      "names": { "en": "Unpolished Toor Dal" },
+      "descriptions": {},
+      "attributes": [],
+      "variants": [
+        {
+          "supplierVariantId": "AF-DAL-03-1KG",
+          "packSize": { "value": 1, "unit": "KG" },
+          "mrp": 210.00,
+          "sellingPrice": 198.45,
+          "priceIncludesTax": true,
+          "gstPercent": 5,
+          "barcode": "8901234567814",
+          "stock": 40
+        }
+      ]
+    }
+  ]
+}
