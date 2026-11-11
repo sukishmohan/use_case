@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupplierFeedState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">supplier-catalogue-sync</a> &gt; <a href="index.source.html" class="el_package">com.example.catalog.domain</a> &gt; <span class="el_source">SupplierFeedState.java</span></div><h1>SupplierFeedState.java</h1><pre class="source lang-java linenums">package com.example.catalog.domain;
+
+import java.time.Instant;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;SUPPLIER_FEED_STATE&quot;)
+<span class="fc" id="L8">public class SupplierFeedState {</span>
+
+    @Id
+    private String supplierCode;
+    private long lastSequenceNo;
+    private String lastFeedId;
+    private Instant updatedAt;
+
+    @Version
+    private int version;
+
+    public String getSupplierCode() {
+<span class="nc" id="L20">        return supplierCode;</span>
+    }
+
+    public void setSupplierCode(String supplierCode) {
+<span class="nc" id="L24">        this.supplierCode = supplierCode;</span>
+<span class="nc" id="L25">    }</span>
+
+    public long getLastSequenceNo() {
+<span class="fc" id="L28">        return lastSequenceNo;</span>
+    }
+
+    public void setLastSequenceNo(long lastSequenceNo) {
+<span class="nc" id="L32">        this.lastSequenceNo = lastSequenceNo;</span>
+<span class="nc" id="L33">    }</span>
+
+    public String getLastFeedId() {
+<span class="nc" id="L36">        return lastFeedId;</span>
+    }
+
+    public void setLastFeedId(String lastFeedId) {
+<span class="nc" id="L40">        this.lastFeedId = lastFeedId;</span>
+<span class="nc" id="L41">    }</span>
+
+    public Instant getUpdatedAt() {
+<span class="nc" id="L44">        return updatedAt;</span>
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+<span class="nc" id="L48">        this.updatedAt = updatedAt;</span>
+<span class="nc" id="L49">    }</span>
+
+    public int getVersion() {
+<span class="nc" id="L52">        return version;</span>
+    }
+
+    public void setVersion(int version) {
+<span class="nc" id="L56">        this.version = version;</span>
+<span class="nc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

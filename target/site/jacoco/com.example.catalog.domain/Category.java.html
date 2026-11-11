@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Category.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">supplier-catalogue-sync</a> &gt; <a href="index.source.html" class="el_package">com.example.catalog.domain</a> &gt; <span class="el_source">Category.java</span></div><h1>Category.java</h1><pre class="source lang-java linenums">package com.example.catalog.domain;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;CATEGORY&quot;)
+<span class="fc" id="L7">public class Category {</span>
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long categoryId;
+    private String name;
+    private Long parentId;
+    /** Root-first path joined with &quot; &gt; &quot;, e.g. &quot;Staples &gt; Rice &gt; Basmati&quot;. */
+    private String path;
+    /** Root = 1. */
+    private int depth;
+
+    public Long getCategoryId() {
+<span class="nc" id="L20">        return categoryId;</span>
+    }
+
+    public void setCategoryId(Long categoryId) {
+<span class="nc" id="L24">        this.categoryId = categoryId;</span>
+<span class="nc" id="L25">    }</span>
+
+    public String getName() {
+<span class="nc" id="L28">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L32">        this.name = name;</span>
+<span class="nc" id="L33">    }</span>
+
+    public Long getParentId() {
+<span class="nc" id="L36">        return parentId;</span>
+    }
+
+    public void setParentId(Long parentId) {
+<span class="nc" id="L40">        this.parentId = parentId;</span>
+<span class="nc" id="L41">    }</span>
+
+    public String getPath() {
+<span class="nc" id="L44">        return path;</span>
+    }
+
+    public void setPath(String path) {
+<span class="nc" id="L48">        this.path = path;</span>
+<span class="nc" id="L49">    }</span>
+
+    public int getDepth() {
+<span class="nc" id="L52">        return depth;</span>
+    }
+
+    public void setDepth(int depth) {
+<span class="nc" id="L56">        this.depth = depth;</span>
+<span class="nc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

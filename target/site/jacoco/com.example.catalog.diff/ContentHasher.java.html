@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContentHasher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">supplier-catalogue-sync</a> &gt; <a href="index.source.html" class="el_package">com.example.catalog.diff</a> &gt; <span class="el_source">ContentHasher.java</span></div><h1>ContentHasher.java</h1><pre class="source lang-java linenums">package com.example.catalog.diff;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+
+/**
+ * C11: SHA-256 over a canonical string of everything that defines a variant's content
+ * (stock excluded). Pure Java, no Spring.
+ *
+ * &lt;p&gt;Canonical form rules, so equal content always gives an equal hash:
+ * attributes sorted by key; money at scale 2 HALF_UP; pack quantity and GST without
+ * trailing zeros (&quot;1&quot;, &quot;1.0&quot; and &quot;1.000&quot; are the same); a unit separator character
+ * between fields so values cannot run into each other.
+ */
+public final class ContentHasher {
+
+    private static final char FIELD_SEPARATOR = '\u001F';
+
+    private ContentHasher() {
+    }
+
+    public static String hash(VariantHashInput in) {
+        try {
+<span class="fc" id="L32">            byte[] digest = MessageDigest.getInstance(&quot;SHA-256&quot;)</span>
+<span class="fc" id="L33">                    .digest(canonicalString(in).getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L34">            return HexFormat.of().formatHex(digest);</span>
+<span class="nc" id="L35">        } catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L36">            throw new IllegalStateException(&quot;SHA-256 is required by the JDK&quot;, e);</span>
+        }
+    }
+
+    static String canonicalString(VariantHashInput in) {
+<span class="fc" id="L41">        Objects.requireNonNull(in, &quot;in&quot;);</span>
+<span class="fc" id="L42">        String attributes = new TreeMap&lt;&gt;(in.attributes()).entrySet().stream()</span>
+<span class="pc" id="L43">                .map(e -&gt; e.getKey() + &quot;=&quot; + e.getValue())</span>
+<span class="fc" id="L44">                .collect(Collectors.joining(&quot;;&quot;));</span>
+<span class="fc" id="L45">        return String.join(String.valueOf(FIELD_SEPARATOR),</span>
+<span class="fc" id="L46">                in.nameEn(),</span>
+<span class="fc" id="L47">                in.brand(),</span>
+<span class="fc" id="L48">                in.categoryPath(),</span>
+                attributes,
+<span class="fc" id="L50">                plain(in.packQty()) + in.packUnit(),</span>
+<span class="fc" id="L51">                money(in.mrp()),</span>
+<span class="fc" id="L52">                money(in.sellingInclTax()),</span>
+<span class="fc" id="L53">                plain(in.gstPercent()),</span>
+<span class="fc" id="L54">                in.barcode());</span>
+    }
+
+    private static String money(BigDecimal value) {
+<span class="fc" id="L58">        return value.setScale(2, RoundingMode.HALF_UP).toPlainString();</span>
+    }
+
+    private static String plain(BigDecimal value) {
+<span class="fc" id="L62">        return value.stripTrailingZeros().toPlainString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
