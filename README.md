@@ -39,7 +39,10 @@ com.example.catalog
 2. Seed rows are inserted with explicit ids, so `data.sql` restarts the identity counters of
    CATEGORY, PRODUCT and PRICE_HISTORY after them. Otherwise the first row the service
    creates would collide with an existing id.
-3. All TIMESTAMP columns hold UTC wall-clock time (`hibernate.jdbc.time_zone=UTC`).
+3. All TIMESTAMP columns hold UTC wall-clock time. `Instant` is mapped to a plain TIMESTAMP
+   (`hibernate.type.preferred_instant_jdbc_type=TIMESTAMP`) together with
+   `hibernate.jdbc.time_zone=UTC`; Hibernate 6's default (TIMESTAMP WITH TIME ZONE) made H2
+   convert through the JVM zone and shifted values on non-UTC machines.
 4. `data.sql` stores 64 zeros as a placeholder `content_hash`; `SeedHashLoader` replaces it at
    startup using the same C11 code that processes feeds. Canonical hash input: names.en,
    brand, category path, attributes sorted by key, pack quantity + unit, MRP, selling price
