@@ -13,9 +13,9 @@ mvn spring-boot:run       # start on http://localhost:8080
 ## Status
 
 - [x] Step 1: project setup, schema.sql, data.sql, entities, seed hash loader
-- [ ] Step 2: DTOs, validation, token check, error handler
-- [ ] Step 3: rules C2-C11 with unit tests
-- [ ] Step 4: feed service (C1, C12, C13), transaction, as-of price endpoint
+- [x] Step 2: DTOs, validation, token check, error handler
+- [x] Step 3: pure Java rules C2-C11 with unit tests
+- [x] Step 4: transactional feed service (C1, C12, C13), feed log and as-of price endpoints
 - [ ] Step 5: remaining tests and end-to-end test
 - [ ] Step 6: refactor, curl samples, coverage thresholds
 
@@ -26,6 +26,8 @@ com.example.catalog
   domain/       JPA entities (plain FK columns, no @ManyToOne, so no accidental N+1)
   repository/   Spring Data repositories
   diff/         pure Java: C11 content hashing (no Spring imports)
+  rules/        pure Java: C2-C11 normalization, validation, price, stock and SKU rules
+  service/      transactional feed orchestration and isolated failed-feed logging
   seed/         startup loader that computes the seed content_hash values
 ```
 

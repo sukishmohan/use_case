@@ -1,10 +1,11 @@
 package com.example.catalog.api;
 
 import com.example.catalog.api.dto.FeedRequest;
+import com.example.catalog.api.dto.FeedResult;
 import com.example.catalog.domain.Supplier;
 import com.example.catalog.repository.SupplierRepository;
+import com.example.catalog.service.FeedService;
 import jakarta.validation.Valid;
-import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeedController {
     private final SupplierRepository suppliers;
     private final FeedRequestValidator validator;
-    public FeedController(SupplierRepository suppliers, FeedRequestValidator validator) {
-        this.suppliers = suppliers; this.validator = validator;
+    private final FeedService feedService;
+    public FeedController(SupplierRepository suppliers, FeedRequestValidator validator, FeedService feedService) {
+        this.suppliers = suppliers; this.validator = validator; this.feedService = feedService;
     }
 
     @PostMapping
-    public Map<String, Object> receive(@PathVariable String supplierCode,
+    public FeedResult receive(@PathVariable String supplierCode,
             @RequestHeader(value = "X-Supplier-Token", required = false) String token,
             @Valid @RequestBody FeedRequest request) {
         Supplier supplier = suppliers.findById(supplierCode.toUpperCase())
@@ -32,6 +34,6 @@ public class FeedController {
         if (token == null || !token.equals(supplier.getApiToken()))
             throw new ApiException(HttpStatus.UNAUTHORIZED, "INVALID_SUPPLIER_TOKEN", "Missing or invalid X-Supplier-Token");
         validator.validateFeedRules(request);
-        return Map.of("feedId", request.feedId(), "status", "VALIDATED", "message", "Feed structure is valid");
+        return feedService.process(supplier.getSupplierCode(), request);
     }
 }
