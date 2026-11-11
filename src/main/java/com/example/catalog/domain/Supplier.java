@@ -1,15 +1,9 @@
 package com.example.catalog.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "SUPPLIER")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Supplier {
 
     @Id
@@ -19,4 +13,44 @@ public class Supplier {
     private String apiToken;
     /** 'Y' or 'N'. */
     private String active;
+
+    public String getSupplierCode() {
+        return supplierCode;
+    }
+
+    public void setSupplierCode(String supplierCode) {
+        this.supplierCode = supplierCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSkuPrefix() {
+        return skuPrefix;
+    }
+
+    public void setSkuPrefix(String skuPrefix) {
+        this.skuPrefix = skuPrefix;
+    }
+
+    public String getApiToken() {
+        return apiToken;
+    }
+
+    public void setApiToken(String apiToken) {
+        this.apiToken = apiToken;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
 }
